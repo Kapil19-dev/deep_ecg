@@ -2,7 +2,7 @@ def slice(sig, slide_len, slide_step):
     pass
 
 
-def noise(sig, snr, n_pdf='gaussian'):
+def add_noise(sig, snr, n_pdf='gaussian'):
     '''pass '''
     if n_pdf == 'gaussian':
         pass

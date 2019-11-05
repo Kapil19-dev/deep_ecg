@@ -1,11 +1,24 @@
-class BaseModel:
+import torch
+import torch.nn as nn
+class BaseModel(nn.Module):
     def __init__(self, param):
+        super(BaseModel, self).__init__()
+        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.param = param
+        self.model = None
 
     def build(self):
         size_output = self.param['size_output']
         size_input = self.param['size_input']
-        pass
+
+        if torch.cuda.device_count() > 1:
+            self.model = nn.DataParallel(self.model)
+        # self.device.to(self.model)
+        # self.tensor = self.tensor.to(self.device)
+
+
+
+
 
     def train(self, train_x, train_y, val_x, val_y):
         pass
